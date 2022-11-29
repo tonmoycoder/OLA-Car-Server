@@ -175,6 +175,20 @@ async function run() {
       res.send(result);
     });
 
+    // get all cars data
+
+    app.get('/allCars', async (req, res) => {
+      const queryData = req.query.model;
+      if (queryData == null) {
+        const query = { carType: 'Porsche' };
+        const data = await productsDataCollection.find(query).toArray();
+        return res.send(data);
+      }
+      const query = { carType: queryData };
+      const curser = productsDataCollection.find(query);
+      const result = await curser.toArray();
+      res.send(result);
+    });
 
 
 
