@@ -82,6 +82,31 @@ async function run() {
       res.send(createUser);
     });
 
+    // get user data by email
+
+    app.get('/userData/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const curser = userLoginCollection.find(query);
+      const result = await curser.toArray();
+      res.send(result);
+    });
+
+    // verify user data by id
+
+    app.put('/verifyUser/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const userData = req.body;
+      const option = { upsert: true };
+      const updateUser = {
+        $set: {
+          verifyStatus: userData.verifyStatus,
+        },
+      };
+      const result = await userLoginCollection.updateOne(query, updateUser, option);
+      res.send(result);
+    });
 
 
 
