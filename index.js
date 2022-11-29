@@ -287,6 +287,14 @@ async function run() {
       res.send(result);
     });
 
+    // seller data delete by admin api
+
+    app.delete('/sellerDelete/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const deleteUser = await userLoginCollection.deleteOne(query);
+      res.send(deleteUser);
+    });
 
 
  
