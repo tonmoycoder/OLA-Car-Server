@@ -207,6 +207,15 @@ async function run() {
       res.send(result);
     });
 
+    // get user booking data by email
+
+    app.get('/userBookingData/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { buyerEmail: email };
+      const result = await userBookingCollection.find(query).toArray();
+      res.send(result);
+    });
+
 
 
 
