@@ -29,7 +29,62 @@ const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
 });
 
+async function run() {
+  try {
+    // user registration data
+    const userLoginCollection = client.db('UserRegisterData').collection('RegisterData');
 
+    // all products data
+    const productsDataCollection = client.db('productData').collection('productCollection');
+
+    // total car category
+    const carCategoryCollection = client.db('CarCategory').collection('CategoryData');
+
+    // user booking data
+    const userBookingCollection = client.db('UserBooking').collection('BookingData');
+
+    // user product report data
+    const userProductReportCollection = client.db('UserReport').collection('ReportData');
+
+    // all-product ads data
+    const productAdsCollection = client.db('ProductAdd').collection('ProductAddCollection');
+
+
+
+    // get all user data
+
+    app.get('/allUserData', async (req, res) => {
+      const result = await userLoginCollection.find().toArray();
+      res.send(result);
+    });
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+   
+
+  } finally {
+  }
+}
 
 run().catch((error) => {
   console.log(error);
