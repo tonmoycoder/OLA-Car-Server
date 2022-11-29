@@ -225,7 +225,23 @@ async function run() {
       res.send(result);
     });
 
+    // update user payment status
 
+    app.put('/updateUserPaymentStatus/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { productID: id };
+      const userData = req.body;
+      const option = { upsert: true };
+
+      const updateUser = {
+        $set: {
+          paymentStatus: userData.paymentStatus,
+        },
+      };
+      console.log(userData);
+      const result = await userBookingCollection.updateMany(query, updateUser, option);
+      res.send(result);
+    });
 
 
 
