@@ -108,6 +108,24 @@ async function run() {
       res.send(result);
     });
 
+    // post products data to DB
+    
+    app.post('/products', async (req, res) => {
+      const productsData = req.body;
+      const result = await productsDataCollection.insertOne(productsData);
+      res.send(result);
+    });
+
+    // get products data by email
+
+    app.get('/productsData/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { seller: email };
+      const curser = productsDataCollection.find(query);
+      const result = await curser.toArray();
+      res.send(result);
+    });
+
 
 
 
