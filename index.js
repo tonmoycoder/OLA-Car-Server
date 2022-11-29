@@ -243,8 +243,22 @@ async function run() {
       res.send(result);
     });
 
+    // post product report
 
+    app.post('/report', async (req, res) => {
+      const reportBody = req.body;
+      const result = await userProductReportCollection.insertOne(reportBody);
+      res.send(result);
+    });
 
+    // get all report
+
+    app.get('/allReport', async (req, res) => {
+      const sort = { ReportTime: -1 };
+      const query = {};
+      const data = await userProductReportCollection.find(query).sort(sort).toArray();
+      return res.send(data);
+    });
 
 
 
