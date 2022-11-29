@@ -306,7 +306,19 @@ async function run() {
       res.send(deleteUser);
     });
 
- 
+    // Admin api
+
+    app.get('/adminState/:email', async (req, res) => {
+      console.log(req.params.email);
+      const query = { email: req.params.email };
+      const curser = await userLoginCollection.findOne(query);
+      if (curser?.accountType === 'Admin') {
+        console.log('admin');
+        return res.send(true);
+      }
+      console.log('not admin');
+      res.send(false);
+    });
 
    
 
