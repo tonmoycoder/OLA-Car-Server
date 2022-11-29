@@ -277,6 +277,15 @@ async function run() {
       res.send(data);
     });
 
+    // get all sellers
+
+    app.get('/allSellers', async (req, res) => {
+      const queryData = req.query.accountType;
+      const query = { accountType: queryData };
+      const curser = userLoginCollection.find(query);
+      const result = await curser.toArray();
+      res.send(result);
+    });
 
 
 
