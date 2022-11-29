@@ -320,7 +320,18 @@ async function run() {
       res.send(false);
     });
 
-   
+    // Buyer api
+    app.get('/buyerState/:email', async (req, res) => {
+      console.log(req.params.email);
+      const query = { email: req.params.email };
+      const curser = await userLoginCollection.findOne(query);
+      if (curser?.accountType === 'Buyer') {
+        console.log('buyer');
+        return res.send(true);
+      }
+      console.log('not buyer');
+      res.send(false);
+    });
 
   } finally {
   }
