@@ -126,6 +126,15 @@ async function run() {
       res.send(result);
     });
 
+    // delete user data from DB by id
+
+    app.delete('/productDelete/:id', async (req, res) => {
+      const ID = req.params.id;
+      const query = { _id: ObjectId(ID) };
+      const deleteUser = await productsDataCollection.deleteOne(query);
+      res.send(deleteUser);
+    });
+
 
 
 
