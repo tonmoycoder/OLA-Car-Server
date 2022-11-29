@@ -135,7 +135,30 @@ async function run() {
       res.send(deleteUser);
     });
 
+    // ADs data delete api
 
+    app.delete('/adsDelete/:id', async (req, res) => {
+      const ID = req.params.id;
+      const query = { productID: ID };
+      const deleteUser = await productAdsCollection.deleteMany(query);
+      res.send(deleteUser);
+    });
+
+    // delete product from user booking
+
+    app.delete('/SellerUserBookingDelete/:id', async (req, res) => {
+      const ID = req.params.id;
+      const query = { productID: ID };
+      const deleteUser = await userBookingCollection.deleteMany(query);
+      res.send(deleteUser);
+    });
+
+    // get all-car category
+
+    app.get('/allCarCategory', async (req, res) => {
+      const data = await carCategoryCollection.find().toArray();
+      res.send(data);
+    });
 
 
 
