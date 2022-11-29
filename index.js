@@ -199,6 +199,14 @@ async function run() {
       res.send(result);
     });
 
+    // post user booking to DB
+
+    app.post('/userBooking', async (req, res) => {
+      const bookingData = req.body;
+      const result = await userBookingCollection.insertOne(bookingData);
+      res.send(result);
+    });
+
 
 
 
