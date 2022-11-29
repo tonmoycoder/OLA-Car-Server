@@ -216,6 +216,14 @@ async function run() {
       res.send(result);
     });
 
+    // get user order by product ID
+
+    app.get('/userBookingDataByProductID/:id', async (req, res) => {
+      const ID = req.params.id;
+      const query = { productID: ID };
+      const result = await userBookingCollection.find(query).toArray();
+      res.send(result);
+    });
 
 
 
