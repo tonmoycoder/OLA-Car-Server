@@ -160,6 +160,20 @@ async function run() {
       res.send(data);
     });
 
+    // only Porsche car category
+
+    app.get('/CarCategory', async (req, res) => {
+      const queryData = req.query.model;
+      if (queryData == null) {
+        const query = { model: 'Porsche' };
+        const data = await carCategoryCollection.find(query).toArray();
+        return res.send(data);
+      }
+      const query = { model: queryData };
+      const curser = carCategoryCollection.find(query);
+      const result = await curser.toArray();
+      res.send(result);
+    });
 
 
 
