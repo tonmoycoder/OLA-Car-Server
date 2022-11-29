@@ -190,7 +190,14 @@ async function run() {
       res.send(result);
     });
 
+    // get single product data by id
 
+    app.get('/singleProduct/:id', async (req, res) => {
+      const ID = req.params.id;
+      const query = { _id: ObjectId(ID) };
+      const result = await productsDataCollection.find(query).toArray();
+      res.send(result);
+    });
 
 
 
