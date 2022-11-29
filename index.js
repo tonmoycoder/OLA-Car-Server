@@ -260,8 +260,22 @@ async function run() {
       return res.send(data);
     });
 
+    // post product ads
 
+    app.post('/productADS', async (req, res) => {
+      const ADSdata = req.body;
+      const result = await productAdsCollection.insertOne(ADSdata);
+      res.send(result);
+    });
 
+    // get all products ads
+
+    app.get('/getAllProductADS', async (req, res) => {
+      const sort = { time: -1 };
+      const limit = 4;
+      const data = await productAdsCollection.find().sort(sort).limit(limit).toArray();
+      res.send(data);
+    });
 
 
 
