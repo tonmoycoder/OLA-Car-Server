@@ -333,6 +333,19 @@ async function run() {
       res.send(false);
     });
 
+    // Seller api
+
+    app.get('/sellerState/:email', async (req, res) => {
+      console.log(req.params.email);
+      const query = { email: req.params.email };
+      const curser = await userLoginCollection.findOne(query);
+      if (curser?.accountType === 'Seller') {
+        console.log('Seller');
+        return res.send(true);
+      }
+      console.log('not Seller');
+      res.send(false);
+    });
   } finally {
   }
 }
